@@ -11,30 +11,30 @@ function Nav() {
                   </div>
                   <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-300 rounded-box z-10 mt-5 w-52 p-4 shadow text-3xl gap-2">
                      <li>
-                        <a className="text-xl">James Kok</a>
+                        <a href="/" className="text-xl">James Kok</a>
                      </li>
                      <li>
-                        <a href="aboutme.html" className="text-xl">
+                        <a href="/about" className="text-xl">
                            About me
                         </a>
                      </li>
                      <li>
-                        <a href="projects.html" className="text-xl">
+                        <a href="/projects" className="text-xl">
                            Projects
                         </a>
                      </li>
                   </ul>
                </div>
-               <a className="hidden sm:flex btn btn-ghost text-xl">James Kok</a>
+               <a href="/" className="hidden sm:flex btn btn-ghost text-xl">James Kok</a>
             </div>
 
             <div className="navbar-center hidden lg:flex">
                <ul className="menu menu-horizontal px-1">
                   <li>
-                     <a href="aboutme.html">About me</a>
+                     <a href="/about">About me</a>
                   </li>
                   <li>
-                     <a href="projects.html">Projects</a>
+                     <a href="/projects">Projects</a>
                   </li>
                </ul>
             </div>
