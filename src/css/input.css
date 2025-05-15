@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+@plugin "daisyui" {
+    themes: all;
+  }
+
+#openingAnimation {
+	animation: zoomIn 1s linear infinite;
+	animation-play-state: paused;
+	animation-delay: calc(var(--scroll) * -1s);
+	animation-iteration-count: 1;
+	animation-fill-mode: both;
+}
+
+@keyframes  zoomIn {
+	to {
+		transform: rotate(90deg);
+	}
+}
+
+@theme {
+	--font-inter: 'Inter', sans-serif;
+	--font-inter-bold: font-weight:900;
+}
+
+.gallery-hover:hover .gallery-image:not(:hover) {
+	filter: blur(1.5px) grayscale(0.5) brightness(.85);
+	transition: filter 0.3s ease;
+}
+
+
+html.preloading {
+  visibility: hidden;
+}
