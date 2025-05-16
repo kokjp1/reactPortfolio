@@ -59,11 +59,13 @@ function App() {
          </g>
       </svg>
       <Nav />
+      <main className="space-y-48">
       <Routes>
         <Route path="/" element={<Home />} /> {/* this is the home page */}
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
       </Routes>
+      </main>
       <Footer />
     </div>
   );
