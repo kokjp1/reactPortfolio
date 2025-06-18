@@ -17,6 +17,7 @@ import 'aos/dist/aos.css';
 import About from './pages/about/about.tsx'
 import Home from './pages/home/home.tsx'
 import Projects from './pages/projects/projectlist.tsx'
+import Project from './pages/projects/project.tsx';
 
 // ─── Components ──────────────────────────────────────
 
@@ -61,9 +62,10 @@ function App() {
       <Nav />
       <main className="space-y-48">
       <Routes>
-        <Route path="/" element={<Home />} /> {/* this is the home page */}
+        <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/:id" element={<Project />} />
       </Routes>
       </main>
       <Footer />
