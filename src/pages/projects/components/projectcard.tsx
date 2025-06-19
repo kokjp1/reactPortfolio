@@ -20,14 +20,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
          <div className="p-4">
             <h3 className="text-xl font-semibold flex justify-between">
                {project.title}
-               <span className="badge badge-neutral text-sm h-3/4 opacity-0 sm:opacity-100">
+               <span className="badge badge-ghost text-sm h-3/4 opacity-0 sm:opacity-100">
                   {project.badge}
                </span>
             </h3>
             <p className="mt-2 text-sm">{project.desc}</p>
             <div className="mt-3 space-x-1">
                {project.categories.map((cat) => (
-                  <span key={cat} className="badge badge-outline text-md category font-bold">
+                  <span key={cat} className="badge badge-ghost text-md category font-bold">
                      {cat}
                   </span>
                ))}
