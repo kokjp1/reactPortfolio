@@ -1,14 +1,19 @@
-import blendersetupImg from "../assets/blendersetup.png";
-import boekenzoekerImg from "../assets/boekenzoeker.png";
-import esotsmImg from "../assets/esotsm.jpg";
-import gameboxdImg from "../assets/gameboxd.png";
-import gamescoutImg from "../assets/gamescout.png";
-import onyxImg from "../assets/onyx.png";
-import portfolio1Img from "../assets/portfolio1.png";
-import portfolio2Img from "../assets/Portfolio2.png";
-import rhythmrainImg from "../assets/rhythmrain.png";
-import userjourneyImg from "../assets/userjourney.png";
-import whackamoleImg from "../assets/whackamole.png";
+import blendersetupImg from "../assets/blender/blendersetup.png";
+import boekenzoekerImg from "../assets/boekenzoeker/boekenzoeker.png";
+import esotsmImg from "../assets/personalprojects/esotsm.jpg";
+import gameboxdImg from "../assets/gameboxd/gameboxd.png";
+import gamescoutImg from "../assets/gamescout/gamescout.png";
+import onyxImg from "../assets/onyx/onyx.png";
+import portfolio1Img from "../assets/portfolio1/portfolio1.png";
+import portfolio2Img from "../assets/portfolio2/Portfolio2.png";
+import rhythmrainImg from "../assets/rhythmrain/rhythmrain.png";
+import userjourneyImg from "../assets/userjourney/userjourney.png";
+import whackamoleImg from "../assets/whackamole/whackamole.png";
+
+import boekenzoekerHome from "../assets/boekenzoeker/boekenzoeker_home.jpg"
+import boekenzoekerWishlist from "../assets/boekenzoeker/boekenzoeker_wishlist.png"
+import boekenzoekerForm from "../assets/boekenzoeker/boekenzoeker_form.png"
+import boekenzoekerError from "../assets/boekenzoeker/boekenzoeker_error.png"
 
 export interface Project {
    id: string;
@@ -26,7 +31,7 @@ export const projects: Project[] = [
       id: "boekenzoeker",
       title: "De Boekenzoeker",
       coverimage: boekenzoekerImg,
-      images: [],
+      images: [boekenzoekerHome, boekenzoekerWishlist, boekenzoekerForm, boekenzoekerError],
       badge: "CMD - 2024",
       desc: "(mock) Assignment for the Municipality of Amsterdam and OBA (Amsterdam Public Library)",
       detaileddesc: " banana ",
