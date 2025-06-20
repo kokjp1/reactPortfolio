@@ -28,6 +28,14 @@ import boekenzoekerWishlist from "../assets/boekenzoeker/boekenzoeker_wishlist.p
 import boekenzoekerForm from "../assets/boekenzoeker/boekenzoeker_form.png"
 import boekenzoekerError from "../assets/boekenzoeker/boekenzoeker_error.png"
 
+import gameboxdPNG from "../assets/gameboxd/gameboxd.png";
+import gameboxdChats from "../assets/gameboxd/gameboxdchats.jpg";
+import gameboxdCollectionJames from "../assets/gameboxd/gameboxdcollectionjames.jpg";
+import gameboxdHome from "../assets/gameboxd/gameboxdhome.jpg";
+import gameboxdLogin from "../assets/gameboxd/gameboxdlogin.jpg";
+import gameboxdProfileJames from "../assets/gameboxd/gameboxdprofilejames.jpg";
+import gameboxdReviewsJames from "../assets/gameboxd/gameboxdreviewsjames.jpg";
+
 export interface Project {
    id: string;
    title: string;
@@ -60,10 +68,10 @@ export const projects: Project[] = [
       id: "gameboxd",
       title: "Gameboxd",
       coverimage: gameboxdImg,
-      images: [],
+      images: [gameboxdChats, gameboxdCollectionJames, gameboxdHome, gameboxdLogin, gameboxdProfileJames, gameboxdReviewsJames],
       badge: "CMD - 2024",
       desc: "Interface ontworpen voor een sociale media app gericht op games",
-      detaileddesc: " banana ",
+      detaileddesc: " Dit was een project dat ik voor mijn studie (CMD) gedaan heb. Het was een opdracht voor de Gemeente Amsterdam en de OBA (Openbare Bibliotheek Amsterdam). Het doel was om een (mock) website te maken die het zoeken naar boeken vergemakkelijkt. De website bevat een homepagina, een wishlist pagina, een formulier voor het toevoegen van boeken en een error pagina. Dit was een project dat ik voor mijn studie (CMD) gedaan heb. Het was een opdracht voor de Gemeente Amsterdam en de OBA (Openbare Bibliotheek Amsterdam). Het doel was om een (mock) website te maken die het zoeken naar boeken vergemakkelijkt. De website bevat een homepagina, een wishlist pagina, een formulier voor het toevoegen van boeken en een error pagina. Dit was een project dat ik voor mijn studie (CMD) gedaan heb. Het was een opdracht voor de Gemeente Amsterdam en de OBA (Openbare Bibliotheek Amsterdam). Het doel was om een (mock) website te maken die het zoeken naar boeken vergemakkelijkt. De website bevat een homepagina, een wishlist pagina, een formulier voor het toevoegen van boeken en een error pagina. Dit was een project dat ik voor mijn studie (CMD) gedaan heb. Het was een opdracht voor de Gemeente Amsterdam en de OBA (Openbare Bibliotheek Amsterdam). Het doel was om een (mock) website te maken die het zoeken naar boeken vergemakkelijkt. De website bevat een homepagina, een wishlist pagina, een formulier voor het toevoegen van boeken en een error pagina. Dit was een project dat ik voor mijn studie (CMD) gedaan heb. Het was een opdracht voor de Gemeente Amsterdam en de OBA (Openbare Bibliotheek Amsterdam). Het doel was om een (mock) website te maken die het zoeken naar boeken vergemakkelijkt. De website bevat een homepagina, een wishlist pagina, een formulier voor het toevoegen van boeken en een error pagina.",
       categories: ["UI 🎨"],
       tools: [],
       link: "https://google.com",

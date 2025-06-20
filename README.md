@@ -2,6 +2,7 @@
 
 - AOS omzetten naar Framer Motion
 - Data aanvullen in projectdata.tsx
+- X-padding & margin op mobile drastisch verminderen
 
 ```
 reactPortfolio
