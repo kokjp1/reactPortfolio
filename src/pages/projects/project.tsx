@@ -1,79 +1,96 @@
 import { useParams } from "react-router";
 import { projects } from "./components/projectdata";
+import { useEffect } from "react";
+import PhotoSwipeLightbox from "photoswipe/lightbox";
+import "photoswipe/style.css";
 
 export default function Project() {
   const { id } = useParams();
   const project = projects.find((project) => project.id === id);
 
-  if (!project)
+  useEffect(() => {
+    if (!project) return;
+    const lightbox = new PhotoSwipeLightbox({
+      gallery: "#gallery",
+      children: "a",
+      pswpModule: () => import("photoswipe")
+    });
+    lightbox.init();
+    return () => lightbox.destroy();
+  }, [project]);
+
+  if (!project) {
     return (
-      <div>
-        Project not found. <a href="/">Terug naar Home</a>
+      <div className="container mx-auto px-18 min-h-screen flex items-center justify-center p-4">
+        <p className="text-lg">Project not found.</p>
+        <a href="/" className="ml-4 text-blue-600 hover:underline">Terug naar Home</a>
       </div>
     );
+  }
 
   return (
-    <main className="flex flex-col items-center justify-center gap-4 py-12">
-      <div className="container mx-auto px-18 lg:max-w-3/4 xl:max-w-1/2">
-        <div className="carousel w-full relative rounded-xl">
-          <div id="slide1" className="carousel-item relative w-full">
-            <img src={project.images[0]} className="w-full" />
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-              <a href="#slide4" className="btn btn-circle">❮</a>
-              <a href="#slide2" className="btn btn-circle">❯</a>
-            </div>
-          </div>
-
-          <div id="slide2" className="carousel-item relative w-full">
-            <img src={project.images[1]} className="w-full" />
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-              <a href="#slide1" className="btn btn-circle">❮</a>
-              <a href="#slide3" className="btn btn-circle">❯</a>
-            </div>
-          </div>
-
-          <div id="slide3" className="carousel-item relative w-full">
-            <img src={project.images[2]} className="w-full" />
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-              <a href="#slide2" className="btn btn-circle">❮</a>
-              <a href="#slide4" className="btn btn-circle">❯</a>
-            </div>
-          </div>
-
-          <div id="slide4" className="carousel-item relative w-full">
-            <img src={project.images[3]} className="w-full" />
-            <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-              <a href="#slide3" className="btn btn-circle">❮</a>
-              <a href="#slide1" className="btn btn-circle">❯</a>
-            </div>
-          </div>
+    <main className="container mx-auto px-18 py-12">
+      <div className="my-12">
+        <div
+          id="gallery"
+          className="columns-2 sm:columns-3 md:columns-4 gap-4 max-w-screen-xl gallery-hover"
+        >
+          {project.images.map((src, idx) => (
+            <a
+              key={idx}
+              href={src}
+              data-pswp-width="1600"
+              data-pswp-height="1200"
+              className="block mb-4 rounded-lg group gallery-image overflow-hidden break-inside-avoid"
+            >
+              <img
+                src={src}
+                alt={`Image ${idx + 1}`}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-pointer"
+              />
+            </a>
+          ))}
         </div>
-
-        <div className="flex justify-center w-full py-2 gap-2">
-          <a href="#slide1" className="btn btn-xs">1</a>
-          <a href="#slide2" className="btn btn-xs">2</a>
-          <a href="#slide3" className="btn btn-xs">3</a>
-          <a href="#slide4" className="btn btn-xs">4</a>
-        </div>
-
-        <section className="flex flex-col gap-6">
-          <div className="w-full flex flex-row justify-between">
-            <h1 className="text-3xl font-semibold">{project.title}</h1>
-            <div className="flex flex-row gap-4">
-            <span className="badge badge-neutral text-lg h-full font-bold">{project.badge}</span>
-            <span className="badge badge-neutral text-lg h-full font-bold">{project.categories}</span>
-            </div>
-          </div>
-          <p>{project.detaileddesc}</p>
-          <a href={project.link}>{project.linkidentifier}</a>
-          <div className="flex flex-wrap items-center gap-2">
-            {project.tools.map((toolUrl, idx) => (
-              <img key={idx} src={toolUrl} className="w-8 h-8"/>
-            ))}
-          </div>
-      </section>
       </div>
 
+      {/* Details Section */}
+      <section className="flex flex-col space-y-6">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
+          <h1 className="text-2xl sm:text-3xl font-semibold">
+            {project.title}
+          </h1>
+          <div className="flex flex-wrap gap-4 mt-4 sm:mt-0">
+            <span className="badge badge-neutral text-lg font-bold">
+              {project.badge}
+            </span>
+            <span className="badge badge-neutral text-lg font-bold">
+              {project.categories}
+            </span>
+          </div>
+        </div>
+
+        <p className="text-base leading-relaxed">
+          {project.detaileddesc}
+        </p>
+
+        <a
+          href={project.link}
+          className="text-blue-600 hover:underline break-all"
+        >
+          {project.linkidentifier}
+        </a>
+
+        <div className="flex flex-wrap items-center gap-2">
+          {project.tools.map((toolUrl, idx) => (
+            <img
+              key={idx}
+              src={toolUrl}
+              alt={`Tool ${idx + 1}`}
+              className="w-8 h-8"
+            />
+          ))}
+        </div>
+      </section>
     </main>
   );
 }
