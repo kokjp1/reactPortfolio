@@ -23,7 +23,7 @@ const certifications: Certification[] = [
     title: 'Cambridge Certificate',
     description: (
       <>
-        Cambridge English Certificate. Mijn resultaat was <strong>C1</strong>. Om te weten wat mijn Cambridge Certificaat voor u kan betekenen, kunt u de officiële video van het Cambridge instituut kijken.
+        Cambridge English Certificate. My result <strong>C1</strong>. To know what my Cambridge Certificate can mean for you, you can view <a href="https://www.cambridgeenglish.org/exams-and-tests/advanced/" className="link" target="blank">the official video/website from the Cambridge Institute.</a>
       </>
     ),
     image: cambridgeImg,

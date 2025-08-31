@@ -80,13 +80,13 @@ export default function Project() {
           {project.linkidentifier}
         </a>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2" >
           {project.tools.map((toolUrl, idx) => (
             <img
               key={idx}
               src={toolUrl}
               alt={`Tool ${idx + 1}`}
-              className="w-8 h-8"
+              className="w-12 h-12 p-2 rounded-xl bg-base-200 border-3 border-primary/20 shadow-sm"
             />
           ))}
         </div>

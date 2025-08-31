@@ -1,80 +1,77 @@
-import { useState, useEffect, useRef } from "react";
-import { motion, useAnimation, useInView } from "framer-motion";
-import type { Variants } from "framer-motion";
-
-import Controls from "./components/controls";
+// src/pages/projects/projectlist.tsx
+import { useRef, useState } from "react";
 import { projects } from "./components/projectdata";
-import type { Project } from "./components/projectdata";
 import { ProjectCard } from "./components/projectcard";
+import Controls from "./components/controls";
+import { motion, type Variants } from "framer-motion";
 
-// Define variant type explicitly to satisfy TypeScript
 const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+   hidden: { opacity: 0, y: 40 },
+   visible: ([idx, base]: [number, number]) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+         duration: 0.5,
+         ease: "easeOut",
+         delay: Math.max(0, (idx - base) * 0.08),
+      },
+   }),
 };
 
-// Component wrapping each ProjectCard with scroll + time-based trigger
-function AnimatedTile({ project, idx }: { project: Project; idx: number }) {
-  const controls = useAnimation();
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.2 });
-  const [timePassed, setTimePassed] = useState(false);
-
-  // Start a timer on mount based on index
-  useEffect(() => {
-    const timer = setTimeout(() => setTimePassed(true), idx * 100);
-    return () => clearTimeout(timer);
-  }, [idx]);
-
-  // When both timer and in-view are ready, trigger animation
-  useEffect(() => {
-    if (inView && timePassed) {
-      controls.start("visible");
-    }
-  }, [inView, timePassed, controls]);
-
-  return (
-    <motion.div
-      ref={ref}
-      animate={controls}
-      initial="hidden"
-      variants={fadeInUp}
-      className="w-full"
-    >
-      <ProjectCard project={project} />
-    </motion.div>
-  );
-}
-
 export default function ProjectList() {
-  const [search, setSearch] = useState<string>("");
-  const [filter, setFilter] = useState<string>("All");
-  const [filteredProjects, setFilteredProjects] = useState<Project[]>(projects);
+   const [searchValue, setSearchValue] = useState("");
+   const [selectedFilter, setSelectedFilter] = useState("All");
 
-  useEffect(() => {
-    setFilteredProjects(
-      projects.filter(
-        (p) =>
-          (filter === "All" || p.categories.includes(filter)) &&
-          p.title.toLowerCase().includes(search.toLowerCase())
-      )
-    );
-  }, [search, filter]);
+   const [baseIndex, setBaseIndex] = useState(0);
 
-  return (
-    <section className="container mx-auto px-18 pt-36 space-y-12">
-      <Controls
-        searchValue={search}
-        onSearchChange={setSearch}
-        selectedFilter={filter}
-        onFilterChange={setFilter}
-      />
+   // Guard to avoid rapid thrashing: only advance baseIndex forward.
+   const lastSeenIndexRef = useRef(0);
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredProjects.map((project, idx) => (
-          <AnimatedTile key={project.title} project={project} idx={idx} />
-        ))}
-      </div>
-    </section>
-  );
+   const filteredProjects = projects.filter((project) => {
+      const matchesSearch = project.title.toLowerCase().includes(searchValue.toLowerCase());
+      const matchesFilter = selectedFilter === "All" || project.categories.includes(selectedFilter);
+      return matchesSearch && matchesFilter;
+   });
+
+   return (
+      <section className="container mx-auto mt-24 px-18">
+         
+         <h2 className="text-3xl font-semibold mb-6">All Projects</h2>
+
+         <Controls
+            searchValue={searchValue}
+            onSearchChange={setSearchValue}
+            selectedFilter={selectedFilter}
+            onFilterChange={(val) => {
+               setBaseIndex(0);
+               lastSeenIndexRef.current = 0;
+               setSelectedFilter(val);
+            }}
+         />
+
+         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredProjects.map((project, idx) => (
+               <motion.div
+                  key={project.id}
+                  variants={fadeInUp}
+                  custom={[idx, baseIndex]}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{
+                     once: true,
+                     margin: "0px 0px 10% 0px", // extend bottom of viewport by 30% -> triggers earlier
+                  }}
+                  onViewportEnter={() => {
+                     if (idx > lastSeenIndexRef.current) {
+                        lastSeenIndexRef.current = idx;
+                        setBaseIndex(idx);
+                     }
+                  }}
+               >
+                  <ProjectCard project={project} />
+               </motion.div>
+            ))}
+         </div>
+      </section>
+   );
 }

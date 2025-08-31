@@ -5,12 +5,8 @@
 // ─── React ───────────────────────────────────────────
 
 import { Routes, Route } from 'react-router'
-import { useEffect } from 'react';
 
 // ─── Libraries ───────────────────────────────────────
-
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 
 // ─── Pages ───────────────────────────────────────────
 
@@ -38,9 +34,6 @@ function App() {
   useThemeSelector();
   backgroundSphere();
 
-  useEffect(() => {
-    AOS.init({});
-  }, []);
 
 
   return (

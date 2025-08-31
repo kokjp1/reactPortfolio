@@ -21,8 +21,8 @@ export default function Controls({ searchValue, onSearchChange, selectedFilter, 
          <form className="filter">
             <input className="btn btn-square" type="reset" value="×" onClick={() => onFilterChange("All")} />
             <input className="btn" type="radio" name="frameworks" aria-label="UI 🎨" checked={selectedFilter === "UI 🎨"} onChange={() => onFilterChange("UI 🎨")} />
-            <input className="btn" type="radio" name="frameworks" aria-label="UX 🔎" checked={selectedFilter === "UX"} onChange={() => onFilterChange("UX")} />
-            <input className="btn" type="radio" name="frameworks" aria-label="CODE 💻" checked={selectedFilter === "CODE"} onChange={() => onFilterChange("CODE")} />
+            <input className="btn" type="radio" name="frameworks" aria-label="UX 🔎" checked={selectedFilter === "UX 🔎"} onChange={() => onFilterChange("UX 🔎")} />
+            <input className="btn" type="radio" name="frameworks" aria-label="CODE 💻" checked={selectedFilter === "CODE 💻"} onChange={() => onFilterChange("CODE 💻")} />
          </form>
       </div>
    );

@@ -2,8 +2,7 @@ function Introduction() {
     return (
     <>
         <h2 className="text-3xl font-semibold">About Me</h2>
-        <p className="mt-4 text-lg">Mensen omschrijven mij als humoristisch, aanwezig, sympathiek, makkelijk in de omgang en energiek. Mensen in mijn omgeving ervaren dat ik verbaal en communicatief altijd 'aan sta'. Ik ben woonachtig in Amsterdam (zuid).
-        
+        <p className="mt-4 text-lg">People describe me as humorous, present, sympathetic, easy-going and energetic. People around me experience the fact that I'm always 'on' verbally and communicatively. I'm situated in Amsterdam.
         </p>
     </>
     );

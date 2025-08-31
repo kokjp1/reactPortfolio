@@ -1,37 +1,40 @@
+// src/pages/about/components/qualities.tsx
+import { motion } from "framer-motion";
+
 export default function Qualities() {
-  // ← Just edit this array when you want different badges:
   const qualities = [
-    { label: 'Creatief 🎨', delay: 100 },
-    { label: 'Detailgericht 📐', delay: 200 },
-    { label: 'Nauwkeurig 📝', delay: 300 },
-    { label: 'Georganiseerd 🗃️', delay: 400 },
-    { label: 'Volhardend ⚓', delay: 500 },
-    { label: 'Realistisch ⚖️', delay: 600 },
-    { label: 'Bekwaam 🎓', delay: 700 },
-    { label: 'Enthousiast ⚡', delay: 800 },
+    { label: "Creative 🎨",     delay: 0.10 },
+    { label: "Detail oriented 📐", delay: 0.20 },
+    { label: "Precise 📝",    delay: 0.30 },
+    { label: "Organized 🗃️", delay: 0.40 },
+    { label: "Persistent ⚓",     delay: 0.50 },
+    { label: "Realistic ⚖️",   delay: 0.60 },
+    { label: "Competent 🎓",       delay: 0.70 },
+    { label: "Enthusiastic ⚡",    delay: 0.80 },
   ];
 
   return (
     <div
       className="
         grid gap-2
-        grid-cols-1          
-        sm:grid-cols-2      
-        md:grid-cols-3        
-        lg:grid-cols-4      
+        grid-cols-1
+        sm:grid-cols-2
+        md:grid-cols-3
+        lg:grid-cols-4
         sm:px-12
       "
     >
       {qualities.map(({ label, delay }) => (
-        <div
+        <motion.div
           key={label}
           className="badge badge-lg w-full px-2 py-6"
-          data-aos="fade-up"
-          data-aos-duration="500"
-          data-aos-delay={delay}
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           {label}
-        </div>
+        </motion.div>
       ))}
     </div>
   );
