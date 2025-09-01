@@ -28,7 +28,6 @@ import boekenzoekerWishlist from "../assets/boekenzoeker/boekenzoeker_wishlist.p
 import boekenzoekerForm from "../assets/boekenzoeker/boekenzoeker_form.png"
 import boekenzoekerError from "../assets/boekenzoeker/boekenzoeker_error.png"
 
-import gameboxdPNG from "../assets/gameboxd/gameboxd.png";
 import gameboxdChats from "../assets/gameboxd/gameboxdchats.jpg";
 import gameboxdCollectionJames from "../assets/gameboxd/gameboxdcollectionjames.jpg";
 import gameboxdHome from "../assets/gameboxd/gameboxdhome.jpg";
