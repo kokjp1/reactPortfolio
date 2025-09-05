@@ -78,7 +78,7 @@ export const projects: Project[] = [
    },
    {
       id: "userjourney",
-      title: "User Journey / Persona",
+      title: "User Journey",
       coverimage: userjourneyImg,
       images: [],
       badge: "CMD - 2024",
